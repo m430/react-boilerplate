@@ -1,15 +1,17 @@
-import React from 'react';
-import ReactDOM from 'react-dom';
-import './index.css';
-import App from './App';
+import createLoading from 'dva-loading';
+import dva from 'dva';
+import './index.less';
+import { initModels } from './models';
+import router from './router';
 import * as serviceWorker from './serviceWorker';
 
-ReactDOM.render(
-  <React.StrictMode>
-    <App />
-  </React.StrictMode>,
-  document.getElementById('root')
-);
+
+const app = dva(createLoading());
+
+initModels(app);
+
+app.router(router);
+app.start('#root');
 
 // If you want your app to work offline and load faster, you can change
 // unregister() to register() below. Note this comes with some pitfalls.
